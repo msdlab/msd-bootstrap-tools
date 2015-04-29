@@ -35,7 +35,7 @@ class MSDBootstrapShortcodes{
         add_shortcode('cols-10',array(&$this,'make_columns_shortcode'));
         add_shortcode('cols-11',array(&$this,'make_columns_shortcode'));
         add_shortcode('cols-12',array(&$this,'make_columns_shortcode'));
-        add_filter('the_content',array(&$this,'wrap_up_columns'), 99);
+        add_filter('the_content',array(&$this,'wrap_up_columns'), 1);
     }
     
     function make_columns_shortcode($atts, $content = null, $shortcode_name){
@@ -49,8 +49,8 @@ class MSDBootstrapShortcodes{
     }
 
     function wrap_up_columns($content){
-        if(msdlab_has_shortcode('cols')){
-            $content = '<div class="row">'.apply_filters('the_content',$content).'</div>';
+        if ( stripos( $content, '[cols-' ) !== false ) {
+            $content = '<div class="row">'.$content.'</div>';
         }
         return $content;
     }
