@@ -45,12 +45,12 @@ class MSDBootstrapShortcodes{
         ), $atts );
         preg_match('/\d+/i',$shortcode_name, $matches);
         $count = $matches[0];
-        return '<div class="col-md-'.$count.' col-sm-'.$atts['sm'].' '.$classes.'">'.$content.'</div>';
+        return '<div class="col-md-'.$count.' col-sm-'.$atts['sm'].' '.$classes.'">'.apply_filters('the_content',$content).'</div>';
     }
 
     function wrap_up_columns($content){
         if(msdlab_has_shortcode('cols')){
-            $content = '<div class="row">'.$content.'</div>';
+            $content = '<div class="row">'.apply_filters('the_content',$content).'</div>';
         }
         return $content;
     }
