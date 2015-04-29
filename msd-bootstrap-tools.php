@@ -3,7 +3,7 @@
 Plugin Name: MSD  Bootstrap Tools
 Description: Some bootstrap tools
 Author: MSDLAB
-Version: 0.1.2
+Version: 0.1.3
 Author URI: http://msdlab.com
 */
 
@@ -52,7 +52,7 @@ if (!class_exists('MSDBootstrapTools')) {
         /**
          * @var string The plugin version
          */
-        var $version = '0.1.2';
+        var $version = '0.1.3';
         
         /**
          * @var string The options string name for this plugin
