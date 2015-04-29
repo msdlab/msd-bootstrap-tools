@@ -97,6 +97,7 @@ if (!class_exists('MSDBootstrapTools')) {
             register_activation_hook(__FILE__, array(&$this,'check_requirements'));
             //get sub-packages
             requireDir(plugin_dir_path(__FILE__).'/lib/inc');
+            add_action( 'wp_enqueue_scripts', array( &$this, 'maybe_load_bootstrap' ), 30 );
             //here are some examples to get started with
             if(class_exists('MSDBootstrapShortcodes')){
                 add_action( 'plugins_loaded', array( 'MSDBootstrapShortcodes', 'get_instance' ) );
@@ -152,6 +153,14 @@ if (!class_exists('MSDBootstrapTools')) {
         }
         /***************************/
         
+        function maybe_load_bootstrap(){
+            if(!wp_script_is( 'bootstrap-jquery', $list = 'enqueued' ) && !wp_script_is( 'bootstrap', $list = 'enqueued' )){
+                wp_enqueue_script('bootstrap-jquery','//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js',array('jquery'));
+            }
+            if(!wp_style_is( 'bootstrap-style', $list = 'enqueued' ) && !wp_style_is( 'bootstrap', $list = 'enqueued' )){
+                wp_enqueue_style('bootstrap-style','//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css');
+            }
+        }
         
         
   } //End Class
