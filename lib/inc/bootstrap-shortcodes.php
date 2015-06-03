@@ -39,13 +39,17 @@ class MSDBootstrapShortcodes{
     }
     
     function make_columns_shortcode($atts, $content = null, $shortcode_name){
+        global $wp_filter;
+ts_var( $wp_filter['the_content'] );
         $atts = shortcode_atts( array(
             'classes' => '',
             'sm' => '12',
         ), $atts );
         preg_match('/\d+/i',$shortcode_name, $matches);
         $count = $matches[0];
-        return '<div class="col-md-'.$count.' col-sm-'.$atts['sm'].' '.$classes.'">'.apply_filters('the_content',$content).'</div>';
+        $content = do_shortcode($content);
+        $ret = '<div class="col-md-'.$count.' col-sm-'.$atts['sm'].' '.$classes.'">'.$content.'</div>';
+        return $ret;
     }
 
     function wrap_up_columns($content){
