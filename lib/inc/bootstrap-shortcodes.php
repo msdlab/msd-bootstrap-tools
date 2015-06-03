@@ -39,8 +39,6 @@ class MSDBootstrapShortcodes{
     }
     
     function make_columns_shortcode($atts, $content = null, $shortcode_name){
-        global $wp_filter;
-ts_var( $wp_filter['the_content'] );
         $atts = shortcode_atts( array(
             'classes' => '',
             'sm' => '12',
